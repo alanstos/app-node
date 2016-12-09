@@ -1,0 +1,23 @@
+{
+  "name": "app-node",
+  "version": "1.0.0",
+  "description": "projeto de estudo",
+  "main": "produtosWeb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanstos/app-node.git"
+  },
+  "author": "Alan Araujo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alanstos/app-node/issues"
+  },
+  "homepage": "https://github.com/alanstos/app-node#readme",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.0"
+  }
+}
