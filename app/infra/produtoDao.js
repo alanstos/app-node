@@ -16,6 +16,11 @@ produtoDao.prototype.lista = function(callback){
 }
 
 
+produtoDao.prototype.salva = function(produto,callback){
+	this._connection.query('insert into livro set ? ',produto,callback);
+	
+}
+
 produtoDao.prototype.remove = function( produto,callback){
 	this._connection.query('delete from livro where id = ' + produto.id, callback);
 }

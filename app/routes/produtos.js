@@ -24,12 +24,39 @@ var func_rotas_produtos = function(app){
 
 	});
 
+
+	app.get('/produtos/form',function(req,res){
+		res.render('produto/form');
+	});
+
+	app.post('/produtos/salva',function(req,res){
+
+		console.log('endpoint de /salva produtos');
+
+		var produto = req.body;
+
+		console.log(produto);
+
+		var connection = app.infra.connectionFactory();
+
+		var produtoDao = new app.infra.produtoDao(connection);
+
+		produtoDao.salva( produto, function(err, results){
+
+			console.log(err);
+
+			res.redirect('/produtos');
+		});
+
+		
+	});	
+
 	app.get('/produtos/remove',function(req,res){
 		console.log('removendo produtos...');
 
 		var connection = app.infra.connectionFactory();
 
-		var produtoDao = app.infra.produtoDao( connection );
+		var produtoDao = new app.infra.produtoDao( connection );
 
 		var produto = produtoDao.carrega(id,function(){
 
