@@ -1,0 +1,6 @@
+CREATE TABLE livro (
+id int(11) NOT NULL AUTO_INCREMENT,
+titulo varchar(255),
+descricao text,
+preco decimal(10,2),
+PRIMARY KEY (id) );
