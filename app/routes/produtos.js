@@ -7,18 +7,41 @@ var func_rotas_produtos = function(app){
 
 		console.log('endpoint de /produtos');
 
-		var connnection = app.infra.connectionFactory();
+		var connection = app.infra.connectionFactory();
 
-      	connnection.query('select * from livro',function(err,results){
+		var produtoDao = new app.infra.produtoDao(connection);
 
-      		console.log(err);
+		produtoDao.lista( function(err,results){ 
 
-            //res.send(results);
+      		console.log('erro= ' + err);
+
             res.render('produto/lista',{lista:results});
 
         });
 
-        connnection.end();        
+        connection.end();        
+        console.log('connection.end()');
+
+	});
+
+	app.get('/produtos/remove',function(req,res){
+		console.log('removendo produtos...');
+
+		var connection = app.infra.connectionFactory();
+
+		var produtoDao = app.infra.produtoDao( connection );
+
+		var produto = produtoDao.carrega(id,function(){
+
+		});
+
+		if (produto){
+			produtoDao.remove(produto,function(){
+
+			});
+		}
+
+		connection.end();    
 
 	});
 }
