@@ -1,27 +1,30 @@
 
-var classLivro = function(connection){
+function produtoDao(connection){
 
 	console.log("lista em produto dao");
 
-	this.lista = function(callback){
-		connection.query('select * from livro',callback);
-	}
+	this._connection = connection;
 
-	this.remove = function( produto,callback){
-		connection.query('delete from livro where id = ' + produto.id, callback);
-	}
-
-	this.carrega = function( id,callback){
-		connection.query('select * from livro where id = ' + id, callback);
-	}	
-
-	console.log(this);
+	//console.log(this);
 
 	return this;
 
 }
 
+produtoDao.prototype.lista = function(callback){
+	this._connection.query('select * from livro',callback);
+}
+
+
+produtoDao.prototype.remove = function( produto,callback){
+	this._connection.query('delete from livro where id = ' + produto.id, callback);
+}
+
+produtoDao.prototype.carrega = function( id,callback){
+	this._connection.query('select * from livro where id = ' + id, callback);
+}	
+
 module.exports = function(){
 	console.log("pre produtoDao");
-	return classLivro;
+	return produtoDao;
 };
