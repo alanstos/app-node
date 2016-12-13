@@ -13,9 +13,17 @@ var func_rotas_produtos = function(app){
 
 		produtoDao.lista( function(err,results){ 
 
-      		console.log('erro= ' + err);
+			console.log('erro= ' + err);
 
-            res.render('produto/lista',{lista:results});
+			//rest - Content Negociation
+			res.format({
+				html : function(){
+					res.render('produto/lista',{lista:results});
+				},
+				json : function(){
+					res.json(results);
+				}
+			});
 
         });
 
@@ -23,7 +31,6 @@ var func_rotas_produtos = function(app){
         console.log('connection.end()');
 
 	});
-
 
 	app.get('/produtos/form',function(req,res){
 		res.render('produto/form');
@@ -44,6 +51,10 @@ var func_rotas_produtos = function(app){
 		produtoDao.salva( produto, function(err, results){
 
 			console.log(err);
+
+			if (!err){
+				console.log('dados salvo com sucesso');
+			}
 
 			res.redirect('/produtos');
 		});
