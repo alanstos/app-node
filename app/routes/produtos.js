@@ -33,7 +33,7 @@ var func_rotas_produtos = function(app){
 	});
 
 	app.get('/produtos/form',function(req,res){
-		res.render('produto/form');
+		res.render('produto/form',{'errosValidacao' : {} });
 	});
 
 	app.post('/produtos/salva',function(req,res){
@@ -43,6 +43,20 @@ var func_rotas_produtos = function(app){
 		var produto = req.body;
 
 		console.log(produto);
+
+		var validatorTitulo = req.assert('titulo','Titulo é obrigatório').notEmpty();
+		var validatorDescricao = req.assert('descricao','Descrição é obrigatório').notEmpty();
+		var validatorPreco = req.assert('preco','Formato inválido').isFloat();
+
+		var erros = req.validationErrors();
+
+		if (erros){
+			console.log('erro  true');
+			console.log(erros);
+			res.render('produto/form',{errosValidacao : erros});
+
+			return;
+		}
 
 		var connection = app.infra.connectionFactory();
 
