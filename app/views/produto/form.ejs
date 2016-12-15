@@ -19,17 +19,17 @@
 
 		<div>
 			<label for="titulo">Titulo</label>
-			<input name="titulo" type="text" id="titulo"  placeholder="coloque o titulo"/> 
+			<input name="titulo" type="text" id="titulo" value="<%=produto.titulo%>"  placeholder="coloque o titulo"/> 
 		</div>
 		<div>
 			<label for="preco">Preço</label>
-			<input name="preco" type="text" id="preco"  placeholder="10.0"/> 
+			<input name="preco" type="text" id="preco" value="<%=produto.preco%>"  placeholder="10.0"/> 
 		</div>
 
 		<div>
 			<label for="descricao">Descrição</label>
 		
-			<textarea name="descricao" rows="10" cols="50" id="descricao" placeholder="coloque uma descricao" ></textarea>
+			<textarea name="descricao" rows="10" cols="50" id="descricao"  placeholder="coloque uma descrição" ><%=produto.descricao%></textarea>
 		</div>		
 
 		<input type="submit" value="gravar" />		

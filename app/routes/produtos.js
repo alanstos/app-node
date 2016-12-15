@@ -33,7 +33,7 @@ var func_rotas_produtos = function(app){
 	});
 
 	app.get('/produtos/form',function(req,res){
-		res.render('produto/form',{'errosValidacao' : {} });
+		res.render('produto/form',{'errosValidacao' : {}, produto : {} });
 	});
 
 	app.post('/produtos/salva',function(req,res){
@@ -53,7 +53,7 @@ var func_rotas_produtos = function(app){
 		if (erros){
 			console.log('erro  true');
 			console.log(erros);
-			res.render('produto/form',{errosValidacao : erros});
+			res.render('produto/form',{errosValidacao : erros,produto: produto});
 
 			return;
 		}
