@@ -16,6 +16,8 @@ var func_module_app = function(){
 	app.use(bodyParser.json());
 	app.use(expressValidator());
 
+
+
 	load('routes',{cwd: 'app'})
 	 		.then('infra')
 			.into(app);

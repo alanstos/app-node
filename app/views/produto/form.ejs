@@ -35,5 +35,43 @@
 		<input type="submit" value="gravar" />		
 	</form>
 
+	<div>
+		<button id="btn-chamar-api">Chamar api</button>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>	
+
+	<script type="text/javascript">
+
+	$( "#btn-chamar-api" ).click(function() {
+	  alert( "Handler for .click() called." );
+	    console.log('componentWillMount');
+	    $.ajax({
+	        url : 'http://localhost:8000/api/autores',
+	        method : 'get',
+	        type: 'GET',
+	        dataType: 'json',
+
+
+	        success : function(result){
+	          console.log('sucesso');
+	          console.log(result);
+	          
+
+	        }.bind(this),
+	        error :function(result){
+
+	          console.log('ocorreu um erro ao realizar o ajax');
+	          console.log(result);
+
+	        }
+	    });
+
+	});	
+
+
+
+	</script>
+
 </body>
 </html>
