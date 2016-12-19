@@ -8,14 +8,31 @@ var func_rotas_autores = function(app){
 		      ];	
 
 	app.get('/api/autores',function(req, res){
-
-
-
 		console.log(autores);
 		res.status(200).jsonp(autores);
 	});
 
-	app.post('/api/autores',function(req, res){
+
+	app.post('/api/autores/grava',function(req, res){
+
+		console.log('chegou no server com post');
+
+		var validatorNome = req.assert('nome','nome é obrigatório').notEmpty();
+		var validatorEmail = req.assert('email','email é obrigatório').notEmpty();
+		var validatorSenha = req.assert('senha','senha eh obrigatorio').notEmpty();
+
+		var erros = req.validationErrors();
+
+		if (erros){
+			console.log('erro  true');
+			console.log(erros);
+		
+			res.status(400).jsonp(erros);
+
+			return;
+		}		
+
+		console.log('sucesso');
 
 		autores.push(req.body);
 
