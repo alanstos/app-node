@@ -5,13 +5,28 @@ var func_rotas_autores = function(app){
 		      {id:'1',nome:'joao barbosa', email:'joao.barbosa@email.com.br',senha:'123456'},
 		      {id:'2',nome:'marcelo jo', email:'marcelo.jo@email.com.br',senha:'123456'},
 		      {id:'3',nome:'p jo', email:'marcelo.jo@email.com.br',senha:'123456'}
-		      ];	
+		    ];	
 
 	app.get('/api/autores',function(req, res){
 		console.log(autores);
 		res.status(200).jsonp(autores);
 	});
 
+	app.post('/api/autores/remove',function(req, res){
+
+		console.log('removendo autor....');		
+
+		var index = autores.indexOf(req.body);
+
+		console.log(index);
+
+		if (index > -1) {
+    		autores.splice(index, 1);
+		}
+
+		res.status(200).jsonp(autores);
+
+	});
 
 	app.post('/api/autores/grava',function(req, res){
 
